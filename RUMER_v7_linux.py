@@ -8,6 +8,9 @@ because it is meant to work with stepper motors (does not write to servo angle a
 current programmed to work with one stepper motor first
 """
 
+import cv2;
+import numpy;
+
 # Simple enough, just import everything from tkinter.
 from Tkinter import *
 #download and install pillow:
@@ -20,6 +23,16 @@ usbport = '/dev/ttyACM0' #can be '/dev/ttyS0'
 
 ser = serial.Serial(usbport, 9600, timeout=1)
 
+#openCV stuff
+vc = cv2.VideoCapture(1)
+
+if vc.isOpened(): # try to get the first frame
+    rval, frame = vc.read()
+else:
+    rval = False
+rval, frame = vc.read()
+cv2.imwrite("pcb.png", frame);
+vc.release()
 
 def move(xpos, ypos):
     #once we get x motor to work properly, then we can add ypos to the argument
@@ -79,7 +92,7 @@ class Window(Frame):
         # create the file object)
         edit = Menu(menu)
 
-        load = Image.open("pic.png")
+        load = Image.open("pcb.png")
         render = ImageTk.PhotoImage(load)
 
         # labels can be text or images
@@ -88,7 +101,7 @@ class Window(Frame):
         img.place(x=0, y=0)
 
     def showImg(self):
-        load = Image.open("pic.png")
+        load = Image.open("pcb.png")
         render = ImageTk.PhotoImage(load)
 
         # labels can be text or images
