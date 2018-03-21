@@ -4,15 +4,11 @@
    Also, the difference between this code and homingAccelStepper and homingAccelStepper_Temp
    is that this code tries to combine the rbe594 code as well, to command it to a set location
    based on mm instead of just how many steps to go to. 
-
    NOTE: The difference between this code and V3 is that this one has servos (picking mechanism)
    and vacuum pump (suction) included. 
-
    We also have the option of taking out the serial input to try playing around with more 
    hard coded applications. We will then look into how to take in serial input from python code. 
-
    By Saraj (Jetro) Pirasmepulkul 2/19/18
-
 */
 #include <Servo.h>
 #include <Wire.h>
@@ -45,7 +41,7 @@ const int Y_AXIS_MAX = 2000; //the total number of steps that the stepper can go
 
 const float MM2STEP = 6.25; //need 300 steps to move 48 mm
 
-const int heatChipMovement = 40;//distance (in mm) between suction to heatgun TCP
+const int heatChipDistance = 40*MM2STEP;//distance (in mm) between suction to heatgun TCP
 
 /*---------------------End Effector Module Stuff-------------------*/
 
@@ -152,12 +148,13 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   loopingCode();
-  pinMode(4,OUTPUT);
-  digitalWrite(4,HIGH);
+  
+  
+  
+  //pinMode(4,OUTPUT);
+  //digitalWrite(4,HIGH);
 }
 
 
 
 // https://www.youtube.com/watch?v=YsLykxnHApg
-
-
