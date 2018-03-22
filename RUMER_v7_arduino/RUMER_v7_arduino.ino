@@ -42,14 +42,14 @@ const int Y_AXIS_MAX = 2000; //the total number of steps that the stepper can go
 const float MM2STEP = 6.25; //need 300 steps to move 48 mm
 
 const int heatChipDistance = 40*MM2STEP;//distance (in mm) between suction to heatgun TCP
-const int dropOffChip = 250*MM2STEP; //distance (in mm) to move X axis to drop off the chip
+const int dropOffChip = 245*MM2STEP; //distance (in mm) to move X axis to drop off the chip
 
 /*---------------------End Effector Module Stuff-------------------*/
 
 const int SERVO_PIN = 6;
 const int VACUUM_PUMP =7; //initialize the pins
-const int SERVO_HOME = 40; //position of servo home
-const int SERVO_DOWN_DISTANCE = 140;
+const int SERVO_HOME = 50; //position of servo home
+const int SERVO_DOWN_DISTANCE = 180; //how far down the servo goes
 
 Servo suctionServo; //initialize servo object for z axis picking up motion
 
