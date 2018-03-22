@@ -42,6 +42,7 @@ const int Y_AXIS_MAX = 2000; //the total number of steps that the stepper can go
 const float MM2STEP = 6.25; //need 300 steps to move 48 mm
 
 const int heatChipDistance = 40*MM2STEP;//distance (in mm) between suction to heatgun TCP
+const int dropOffChip = 220*MM2STEP; //distance (in mm) to move X axis to drop off the chip
 
 /*---------------------End Effector Module Stuff-------------------*/
 
@@ -75,7 +76,7 @@ void setup() {
   stepperY.setAcceleration(100.0);
 
   //start homing procedure of stepper motor at startup
-  Serial.print("Stepper is homing....");
+  Serial.println("Stepper is homing....");
 
   //--------Homing X Axis Stepper------------------
 
@@ -123,15 +124,16 @@ void setup() {
 
   stepperX.setCurrentPosition(0);
   stepperY.setCurrentPosition(0);
-  Serial.println("Homing Completed");
-  Serial.println("");
+  //Serial.println("Homing Completed");
+  Serial.write("home"); //for python interface
+  //Serial.println("");
   stepperX.setMaxSpeed(300.0); //set Max speed of stepper (for faster regular movements)
   stepperX.setAcceleration(500.0); //set Acceleration of stepper
   stepperY.setMaxSpeed(300.0); //set Max speed of stepper (for faster regular movements)
   stepperY.setAcceleration(500.0); //set Acceleration of stepper
 
   //print out instructions on the serial monitor at start
-  Serial.println("Enter travel distance (pos for cw/ neg foru ccw/ 0 for back to home): ");
+  //Serial.println("Enter travel distance (pos for cw/ neg foru ccw/ 0 for back to home): ");
 
 
   /*** Thermometer stuff ***/

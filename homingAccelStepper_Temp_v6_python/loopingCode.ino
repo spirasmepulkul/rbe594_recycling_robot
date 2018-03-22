@@ -25,7 +25,7 @@ void loopingCode() {
     }
 
     else {
-      Serial.println("Moving stepper to (x,y) position in mm: " + firstNum + "," + secondNum);
+      //Serial.println("Moving stepper to (x,y) position in mm: " + firstNum + "," + secondNum);
       //move in x direction
       stepperX.moveTo(TravelX); //set the new moveto position of stepper
       //move in y direction
@@ -64,13 +64,13 @@ void loopingCode() {
 
     // If move is completed display message on Serial Monitor
     if ((move_finished == 0) && (stepperX.distanceToGo() == 0) && (stepperY.distanceToGo() == 0)) {
-      Serial.println("COMPLETED!");
-       Serial.println("Object temperature in celsius: " + String(temperature));
+      //Serial.println("COMPLETED!");
+       //Serial.println("Object temperature in celsius: " + String(temperature));
       //stepperX.moveTo(TravelX + heatChipMovement); //move the heatgun to position over the chip
       //delay(2000); // 2 seconds for chip to heat up
       //stepperX.moveTo(TravelX); //move the gripper back over the chip
       // Serial.println("");
-      Serial.println("Enter travel distance in mm or 0,0 to return to HOME): ");
+      //Serial.println("Enter travel distance in mm or 0,0 to return to HOME): ");
       move_finished = 1; // Reset move variable
             
     /***---------------------Position the heatgun TCP over the Chip-------------***/ 
@@ -85,7 +85,13 @@ void loopingCode() {
       {stepperX.run();}
       
 
-      pickupChip();
+      pickupChip(); //pick up the chip
+
+      
+      //move to the end to drop off the chip
+      stepperX.moveTo(dropOffChip);
+      while (stepperX.distanceToGo() != 0)
+      {stepperX.run();}
      }
     //moving the motor back and forth for the heatgun
 

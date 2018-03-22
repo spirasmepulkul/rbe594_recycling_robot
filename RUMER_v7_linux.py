@@ -19,12 +19,25 @@ from PIL import Image, ImageTk
 
 #serial stuff
 import serial
-usbport = '/dev/ttyACM0' #can be '/dev/ttyS0'
+usbport = '/dev/ttyACM0' #check arduino "COM port"
 
 ser = serial.Serial(usbport, 9600, timeout=1)
 
+homing = True;
+while homing:
+	message = ser.readline()
+	print(message)
+	if (message == 'home'):
+		homing = False
+	
+
+
 #openCV stuff
 vc = cv2.VideoCapture(1)
+width = 1280
+height = 720
+vc.set(3,width)
+vc.set(4,height)
 
 if vc.isOpened(): # try to get the first frame
     rval, frame = vc.read()
