@@ -75,22 +75,8 @@ void loopingCode() {
             
     /***---------------------Position the heatgun TCP over the Chip-------------***/ 
 
-     /***
-      stepperX.moveTo(TravelX+heatChipDistance);
-      while (stepperX.distanceToGo() != 0)
-      { stepperX.setSpeed(200);stepperX.runSpeed();}
-      ***/
-      delay(3000); //simulate the time it takes to heat up the chip
-
-      
-      /***      
-      stepperX.moveTo(TravelX);
-      while (stepperX.distanceToGo() != 0)
-      { stepperX.setSpeed(-200);stepperX.runSpeed();}
-
-      ***/
-      
-
+      delay(3000); //simulate the time it takes to heat up the chip 
+/***
       pickupChip(); //pick up the chip
 
       
@@ -104,6 +90,8 @@ void loopingCode() {
       stepperX.moveTo(dropOffChip/2);
       while (stepperX.distanceToGo() != 0)
       { stepperX.setSpeed(-250);stepperX.runSpeed();}
+
+      ***/
       
      }
     //moving the motor back and forth for the heatgun
