@@ -75,11 +75,11 @@ void loopingCode() {
             
     /***---------------------Position the heatgun TCP over the Chip-------------***/ 
 
-      delay(3000); //simulate the time it takes to heat up the chip 
-/***
+      delay(60000); //simulate the time it takes to heat up the chip 
+
       pickupChip(); //pick up the chip
 
-      
+      /***
       //move to the end to drop off the chip
       stepperX.moveTo(dropOffChip);
       while (stepperX.distanceToGo() != 0)

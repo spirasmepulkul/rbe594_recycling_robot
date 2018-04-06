@@ -50,10 +50,12 @@ vc.release()
 def move(xpos, ypos):
     #once we get x motor to work properly, then we can add ypos to the argument
     #print(xpos, ypos)
-    x_pix2mm = 4.7#14.5 #conversion constant from click value to stepper motor mm coords
-    y_pix2mm = 4.2#2
-    x_coords = int(xpos/x_pix2mm)
-    y_coords = int(ypos/y_pix2mm)
+    x_pix2mm = 3#5.2#14.5 #conversion constant from click value to stepper motor mm coords
+    y_pix2mm = 3#4.1#2
+    x_offset = 197 #pixels
+    y_offset = 28 #pixels
+    x_coords = int(((xpos-x_offset)/x_pix2mm)-18)
+    y_coords =  int(((ypos-y_offset)/y_pix2mm)-18)
     coords = str(x_coords) + "," + str(y_coords)
     print(coords)
     if ((0 <= x_coords <= 220) and (0 <= y_coords <= 220)):
