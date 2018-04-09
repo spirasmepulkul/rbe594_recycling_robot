@@ -54,12 +54,6 @@ void loopingCode() {
       //Serial.println("Ambient in celsius: " + String(therm.ambient(),2));
     }
 
-    /*----------------------------this is where it does the heat chip movements------------------*/
-
-    //stepperX.moveTo(TravelX + heatChipMovement); //move the heatgun to position over the chip
-    //delay(2000); // 2 seconds for chip to heat up
-    //stepperX.moveTo(TravelY); //move the gripper back over the chip
-
     /*** --------------------- End Thermometer/Begin Stepper Complete Movement ----------------------***/
 
     // If move is completed display message on Serial Monitor
@@ -75,23 +69,17 @@ void loopingCode() {
             
     /***---------------------Position the heatgun TCP over the Chip-------------***/ 
 
-      delay(3000); //simulate the time it takes to heat up the chip 
+      delay(1000); //simulate the time it takes to heat up the chip 
+      
+
+      heatChip();
 
       pickupChip(); //pick up the chip
 
-      /***
-      //move to the end to drop off the chip
-      stepperX.moveTo(dropOffChip);
-      while (stepperX.distanceToGo() != 0)
-      { stepperX.setSpeed(250);stepperX.runSpeed();}
+      dropOffChip();
 
-      delay(2000);
 
-      stepperX.moveTo(dropOffChip/2);
-      while (stepperX.distanceToGo() != 0)
-      { stepperX.setSpeed(-250);stepperX.runSpeed();}
-
-      ***/
+      
       
      }
     //moving the motor back and forth for the heatgun
