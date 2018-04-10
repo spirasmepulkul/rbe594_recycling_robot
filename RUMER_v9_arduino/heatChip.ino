@@ -13,7 +13,7 @@ void heatChip(){
       while (stepperX.distanceToGo() != 0)
       { stepperX.setSpeed(250);stepperX.runSpeed();}
 
-      delay(3000);
+      delay(100000);
 
       stepperX.moveTo(TravelX);
       while (stepperX.distanceToGo() != 0)

@@ -49,8 +49,8 @@ const int DROPOFFDISTANCE = 245*MM2STEP; //distance (in mm) to move X axis to dr
 
 const int SERVO_PIN = 6;
 const int VACUUM_PUMP =7; //initialize the pins
-const int SERVO_HOME = 150; //position of servo home
-const int SERVO_DOWN_DISTANCE = 30; //how far down the servo goes
+const int SERVO_HOME = 100; //position of servo home
+const int SERVO_DOWN_DISTANCE = 60; //how far down the servo goes
 
 Servo suctionServo; //initialize servo object for z axis picking up motion
 

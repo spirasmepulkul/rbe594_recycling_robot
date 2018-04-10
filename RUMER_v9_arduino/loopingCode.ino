@@ -69,12 +69,12 @@ void loopingCode() {
             
     /***---------------------Position the heatgun TCP over the Chip-------------***/ 
 
-      delay(1000); //simulate the time it takes to heat up the chip 
+      delay(500); //simulate the time it takes to heat up the chip 
       
 
       heatChip();
 
-      pickupChip(); //pick up the chip
+     pickupChip(); //pick up the chip
 
       dropOffChip();
 
