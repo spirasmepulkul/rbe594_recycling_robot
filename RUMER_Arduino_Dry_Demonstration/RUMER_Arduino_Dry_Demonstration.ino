@@ -129,10 +129,10 @@ void setup() {
   delay(1000);
   Serial.write("home"); //for python interface
   //Serial.println("");
-  stepperX.setMaxSpeed(250.0); //set Max speed of stepper (for faster regular movements)
-  stepperX.setAcceleration(500.0); //set Acceleration of stepper
-  stepperY.setMaxSpeed(200.0); //set Max speed of stepper (for faster regular movements)
-  stepperY.setAcceleration(500.0); //set Acceleration of stepper
+  stepperX.setMaxSpeed(250); //set Max speed of stepper (for faster regular movements)
+  stepperX.setAcceleration(500); //set Acceleration of stepper
+  stepperY.setMaxSpeed(200); //set Max speed of stepper (for faster regular movements)
+  stepperY.setAcceleration(500); //set Acceleration of stepper
 
   //print out instructions on the serial monitor at start
   //Serial.println("Enter travel distance (pos for cw/ neg foru ccw/ 0 for back to home): ");
