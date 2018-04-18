@@ -142,7 +142,6 @@ void setup() {
   therm.begin();
   therm.setUnit(TEMP_C);
   pinMode(LED_PIN, OUTPUT); //led pin as output
-  setLED(LOW); //LED OFF
 
   /*** Suction Gripper ***/
 
