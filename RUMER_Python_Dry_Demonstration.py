@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
-#by Saraj (Jetro) Pirasmepulkul 3/12/18
+#by Saraj (Jetro) Pirasmepulkul 4/19/18
 
 """
-This version is an improvement to version 1 (pythonToArduinoPCBCoordinates2.py)
-because it is meant to work with stepper motors (does not write to servo angle anymore)
-current programmed to work with one stepper motor first
+This is the final version of the python program to run RUMER. simply open up a terminal, type python <name_of_file.py> and press enter
+If the system is powered on, ideally before you run this script, the system will begin homing itself. 
+
+This program can be scaled up to incorporate more CV and AI techniques to detect the chips on the PCB
 """
 
 import cv2;

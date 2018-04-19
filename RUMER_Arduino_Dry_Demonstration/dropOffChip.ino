@@ -1,7 +1,12 @@
+/*
+ * move to the end to drop off the chip by turning off the pump
+ * and coming back to where that chip was. 
+*/
+
 #include "Arduino.h"
 
 void dropOffChip(){
-        //move to the end to drop off the chip
+
       stepperX.moveTo(DROPOFFDISTANCE);
       while (stepperX.distanceToGo() != 0)
       { stepperX.setSpeed(250);stepperX.runSpeed();}

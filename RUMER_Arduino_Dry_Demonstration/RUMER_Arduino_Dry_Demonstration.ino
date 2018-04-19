@@ -1,15 +1,13 @@
 
 /*
-   This code combines homing of the steppers with the temperature sensor reading
-   Also, the difference between this code and homingAccelStepper and homingAccelStepper_Temp
-   is that this code tries to combine the rbe594 code as well, to command it to a set location
-   based on mm instead of just how many steps to go to. 
-   NOTE: The difference between this code and V3 is that this one has servos (picking mechanism)
-   and vacuum pump (suction) included. 
-   We also have the option of taking out the serial input to try playing around with more 
-   hard coded applications. We will then look into how to take in serial input from python code. 
-   By Saraj (Jetro) Pirasmepulkul 2/19/18
+  This is the final version of the arduino code for RBE594 project "RUMER",
+  Robot for Urban Mining and E-waste Recycling. This code is tuned to quickly
+  loop through the different functionalities of the system without time for
+  heating the chip. If you want the increases the heating time for a real hot
+  live demonstration, simply increase the delay in the heatChip tab.
+  By Saraj (Jetro) Pirasmepulkul 4/19/2018
 */
+
 #include <Servo.h>
 #include <Wire.h>
 #include <SparkFunMLX90614.h>
@@ -24,7 +22,7 @@ float temperature;
 /* ---------------------Stepper Motor Stuff ---------------------*/
 //AccelStepper stepperX(1,2,3); //pin2 = step, pin3 = dir
 AccelStepper stepperX(1, 8, 9); //pin 8 = step, pin 9 = dir
-AccelStepper stepperY(1,10,11);
+AccelStepper stepperY(1, 10, 11);
 
 #define home_switch_x 2 //pin 2 is connected to home switch 
 #define home_switch_y 3 //y axis home switch connected to pin 3
@@ -41,14 +39,13 @@ const int Y_AXIS_MAX = 2000; //the total number of steps that the stepper can go
 
 const float MM2STEP = 6.25; //need 300 steps to move 48 mm
 
-const int heatChipDistance = 21.5*MM2STEP;//distance (in mm) between suction to heatgun TCP
-const int DROPOFFDISTANCE = 245*MM2STEP; //distance (in mm) to move X axis to drop off the chip
-
+const int heatChipDistance = 21.5 * MM2STEP; //distance (in mm) between suction to heatgun TCP
+const int DROPOFFDISTANCE = 245 * MM2STEP; //distance (in mm) to move X axis to drop off the chip
 
 /*---------------------End Effector Module Stuff-------------------*/
 
 const int SERVO_PIN = 6;
-const int VACUUM_PUMP =7; //initialize the pins
+const int VACUUM_PUMP = 7; //initialize the pins
 const int SERVO_HOME = 100; //position of servo home
 const int SERVO_DOWN_DISTANCE = 60; //how far down the servo goes
 
@@ -58,7 +55,7 @@ void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
 
-  //end effector module setup 
+  //end effector module setup
   suctionServo.attach(SERVO_PIN); //attach servo object
   pinMode(VACUUM_PUMP, OUTPUT); //initialize digital pin VACUUM_PUMP as output
   suctionServo.write(SERVO_HOME); //home the suction servo to nominal position (retracted)
@@ -121,7 +118,7 @@ void setup() {
     delay(5);
   }
 
-/*** -----------Homing Complete --------------***/
+  /*** -----------Homing Complete --------------***/
 
   stepperX.setCurrentPosition(0);
   stepperY.setCurrentPosition(0);
@@ -134,30 +131,16 @@ void setup() {
   stepperY.setMaxSpeed(200); //set Max speed of stepper (for faster regular movements)
   stepperY.setAcceleration(500); //set Acceleration of stepper
 
-  //print out instructions on the serial monitor at start
-  //Serial.println("Enter travel distance (pos for cw/ neg foru ccw/ 0 for back to home): ");
-
-
   /*** Thermometer stuff ***/
   therm.begin();
   therm.setUnit(TEMP_C);
   pinMode(LED_PIN, OUTPUT); //led pin as output
-
-  /*** Suction Gripper ***/
-
-
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   loopingCode();
-  
-  
-  
-  //pinMode(4,OUTPUT);
-  //digitalWrite(4,HIGH);
+
 }
 
-
-
-// https://www.youtube.com/watch?v=YsLykxnHApg
+//credits: https://www.youtube.com/watch?v=YsLykxnHApg
